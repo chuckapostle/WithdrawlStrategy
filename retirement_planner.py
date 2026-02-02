@@ -640,6 +640,12 @@ def main():
         
         st.divider()
         
+        # Expenses
+        st.subheader("💸 Expenses")
+        initial_expenses = st.number_input("Annual Expenses ($)", value=150_000, step=5_000, format="%d")
+        
+        st.divider()
+        
         # Performance Assumptions - SEPARATE
         st.subheader("📊 Performance Assumptions")
         inflation_rate = st.slider("Inflation Rate (%)", 0.0, 5.0, 2.66, 0.1) / 100
@@ -729,14 +735,7 @@ def main():
         run_monte_carlo=run_monte_carlo_sim, num_simulations=num_simulations
     )
     
-    # Add expenses to sidebar (was missing)
-    initial_expenses = 150_000  # Default
-    with st.sidebar:
-        st.subheader("💸 Expenses")
-        initial_expenses = st.number_input("Annual Expenses ($)", value=150_000, step=5_000, format="%d", key="expenses_input")
-    
-    # Update params with expenses
-    params.initial_expenses = initial_expenses
+    # Update params with expenses is no longer needed - expenses is now defined before params
     
     # ==========================================================================
     # RUN SIMULATIONS
